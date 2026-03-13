@@ -1,0 +1,50 @@
+2026-03-13 14:23:40.322 | INFO     | app.core.config:log_summary:104 - ====================================================================================================
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:105 - Configuration Summary
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:106 - ====================================================================================================
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:108 - Server Configurations:
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:109 -   Environment: dev
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:110 -   Database URL: postgresql+asyncpg://user:pass@localhost:5432/mydb
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:111 -   Base Api Path: /api/v1
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:112 -   Project Name: My FastAPI Project
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:113 -   Log Level: INFO
+2026-03-13 14:23:40.323 | INFO     | app.core.config:log_summary:114 -   Whitelisted origins: ['http://localhost:1234', 'http://localhost:4321']
+2026-03-13 14:26:42.279 | INFO     | app.core.config:log_summary:104 - ====================================================================================================
+2026-03-13 14:26:42.279 | INFO     | app.core.config:log_summary:105 - Configuration Summary
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:106 - ====================================================================================================
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:108 - Server Configurations:
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:109 -   Environment: dev
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:110 -   Database URL: postgresql+asyncpg://user:pass@localhost:5432/mydb
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:111 -   Base Api Path: /api/v1
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:112 -   Project Name: My FastAPI Project
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:113 -   Log Level: INFO
+2026-03-13 14:26:42.280 | INFO     | app.core.config:log_summary:114 -   Whitelisted origins: ['http://localhost:1234', 'http://localhost:4321']
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:104 - ====================================================================================================
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:105 - Configuration Summary
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:106 - ====================================================================================================
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:108 - Server Configurations:
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:109 -   Environment: dev
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:110 -   Database URL: postgresql+asyncpg://sujal_user:sujal_pass@localhost:5432/mydb
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:111 -   Base Api Path: /api/v1
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:112 -   Project Name: My FastAPI Project
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:113 -   Log Level: INFO
+2026-03-13 14:27:07.733 | INFO     | app.core.config:log_summary:114 -   Whitelisted origins: ['http://localhost:1234', 'http://localhost:4321']
+2026-03-13 14:28:26.060 | INFO     | app.core.config:log_summary:104 - ====================================================================================================
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:105 - Configuration Summary
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:106 - ====================================================================================================
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:108 - Server Configurations:
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:109 -   Environment: dev
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:110 -   Database URL: postgresql+asyncpg://sujal_user:sujal_pass@localhost:5432/mydb
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:111 -   Base Api Path: /api/v1
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:112 -   Project Name: My FastAPI Project
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:113 -   Log Level: INFO
+2026-03-13 14:28:26.061 | INFO     | app.core.config:log_summary:114 -   Whitelisted origins: ['http://localhost:1234', 'http://localhost:4321']
+2026-03-13 14:28:54.946 | INFO     | app.core.config:log_summary:104 - ====================================================================================================
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:105 - Configuration Summary
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:106 - ====================================================================================================
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:108 - Server Configurations:
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:109 -   Environment: dev
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:110 -   Database URL: postgresql+asyncpg://sujal_user:sujal_pass@localhost:5432/mydb
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:111 -   Base Api Path: /api/v1
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:112 -   Project Name: My FastAPI Project
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:113 -   Log Level: INFO
+2026-03-13 14:28:54.947 | INFO     | app.core.config:log_summary:114 -   Whitelisted origins: ['http://localhost:1234', 'http://localhost:4321']
