@@ -19,7 +19,7 @@ def setup_logger() -> None:
         enqueue=True,
     )
 
-    logger.add("app.log", rotation="500 MB", level=config.server.LOG_LEVEL)
+    logger.add("logs/app.log", rotation="500 MB", level=config.server.LOG_LEVEL)
 
 
 setup_logger()

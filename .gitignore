@@ -1,2 +1,8 @@
 # Environment Variables
 .env
+
+# Logs
+/logs
+
+# Cache
+__pycache__
