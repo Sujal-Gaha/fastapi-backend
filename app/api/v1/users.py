@@ -1,7 +1,13 @@
 from fastapi import APIRouter, HTTPException, status
 
 from app.api.deps import AsyncSessionDep
-from app.schemas.user import CreateUserInputSchema, UserSchema, CreateUserResponseSchema
+from app.schemas.user import (
+    CreateUserInputSchema,
+    UserSchema,
+    CreateUserResponseSchema,
+    GetUserByIdResponseSchema,
+    GetUserByIdInputSchema,
+)
 from app.repo.user import UserRepository
 
 from app.core.exceptions import DuplicateEmailError
@@ -11,7 +17,7 @@ router = APIRouter()
 
 
 @router.post(
-    "/users",
+    "/create_user",
     response_model=CreateUserResponseSchema,
     status_code=status.HTTP_201_CREATED,
 )
@@ -26,4 +32,24 @@ async def create_user(session: AsyncSessionDep, user_data: CreateUserInputSchema
 
     return CreateUserResponseSchema(
         message="User created successfully", data=UserSchema.model_validate(user)
+    )
+
+
+@router.post(
+    "/get_user_by_id/{user_id}",
+    response_model=GetUserByIdResponseSchema,
+    status_code=status.HTTP_200_OK,
+)
+async def get_user_by_id(session: AsyncSessionDep, user_id: str):
+    repo = UserRepository(session=session)
+
+    user = await repo.find_by_id(user_id)
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
+        )
+
+    return GetUserByIdResponseSchema(
+        message="User retrieved", is_success=True, data=UserSchema.model_validate(user)
     )

@@ -3,9 +3,10 @@ import uuid
 from datetime import datetime, timezone
 
 from sqlalchemy import UUID, DateTime, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
+from app.models.todo import Todo
 
 
 class User(Base):
@@ -35,4 +36,9 @@ class User(Base):
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc),
         nullable=False,
+    )
+
+    # Relationships
+    todos: Mapped[list["Todo"]] = relationship(
+        "Todo", backref="user", lazy=True, cascade="all, delete-orphan"
     )
