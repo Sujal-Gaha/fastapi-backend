@@ -1,12 +1,14 @@
 from fastapi import APIRouter, HTTPException, status
 
 from app.api.deps import AsyncSessionDep
+from app.schemas.base.schema import PaginationOutputSchema
 from app.schemas.user import (
     CreateUserInputSchema,
     UserSchema,
     CreateUserResponseSchema,
     GetUserByIdResponseSchema,
-    GetUserByIdInputSchema,
+    GetAllUsersResponseSchema,
+    GetAllUsersOutputSchema,
 )
 from app.repo.user import UserRepository
 
@@ -35,7 +37,7 @@ async def create_user(session: AsyncSessionDep, user_data: CreateUserInputSchema
     )
 
 
-@router.post(
+@router.get(
     "/get_user_by_id/{user_id}",
     response_model=GetUserByIdResponseSchema,
     status_code=status.HTTP_200_OK,
@@ -52,4 +54,34 @@ async def get_user_by_id(session: AsyncSessionDep, user_id: str):
 
     return GetUserByIdResponseSchema(
         message="User retrieved", is_success=True, data=UserSchema.model_validate(user)
+    )
+
+
+@router.get(
+    "/get_all_users",
+    response_model=GetAllUsersResponseSchema,
+)
+async def get_all_users(session: AsyncSessionDep, page: int = 1, per_page: int = 10):
+    repo = UserRepository(session)
+
+    users, total = await repo.get_paginated(page, per_page)
+
+    pages = (total + per_page - 1) // per_page
+
+    pagination = PaginationOutputSchema(
+        page=page,
+        per_page=per_page,
+        total=total,
+        pages=pages,
+        has_next=page < pages,
+        has_prev=page > 1,
+    )
+
+    return GetAllUsersResponseSchema(
+        message="Users",
+        is_success=True,
+        data=GetAllUsersOutputSchema(
+            users=[UserSchema.model_validate(user) for user in users],
+            pagination=pagination,
+        ),
     )

@@ -7,9 +7,9 @@ from app.db.session import Base
 
 
 class TodoPriorityEnum(str, enum.Enum):
-    LOW = "low"
-    MEDIUM = "medium"
-    HIGH = "high"
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
 
 
 class Todo(Base):
