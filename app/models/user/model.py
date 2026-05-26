@@ -4,9 +4,12 @@ from datetime import datetime, timezone
 
 from sqlalchemy import UUID, DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING
 
 from app.db.session import Base
-from app.models.todo import Todo
+
+if TYPE_CHECKING:
+    from app.models.todo.model import Todo
 
 
 class User(Base):
@@ -40,5 +43,5 @@ class User(Base):
 
     # Relationships
     todos: Mapped[list["Todo"]] = relationship(
-        "Todo", backref="user", lazy=True, cascade="all, delete-orphan"
+        "Todo", back_populates="user", lazy=True, cascade="all, delete-orphan"
     )

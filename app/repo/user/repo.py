@@ -1,22 +1,23 @@
 from typing import Any, Optional
+from uuid import UUID
 
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.repo.base import BaseRepository
-from app.models.user import User
+from app.repo.base.repo import BaseRepository
+from app.models.user.model import User
 from app.core.security import get_password_hash
 from app.core.logging import logger
 from app.core.exceptions import DuplicateEmailError
 
 
-class UserRepository(BaseRepository[User]):
+class UserRepository(BaseRepository[User, UUID]):
     def __init__(self, session: AsyncSession):
         super().__init__(session)
         self.model = User
 
-    async def find_by_id(self, id: str) -> Optional[User]:
+    async def find_by_id(self, id: UUID) -> Optional[User]:
         stmt = select(self.model).where(self.model.id == id)
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
@@ -45,7 +46,7 @@ class UserRepository(BaseRepository[User]):
             logger.error(f"IntegrityError creating user: {e}")
             raise DuplicateEmailError("Email already registered") from e
 
-    async def update(self, id: str, input: dict[str, Any]) -> Optional[User]:
+    async def update(self, id: UUID, input: dict[str, Any]) -> Optional[User]:
         user = await self.find_by_id(id)
         if not user:
             return None
@@ -57,7 +58,7 @@ class UserRepository(BaseRepository[User]):
         await self.session.refresh(user)
         return user
 
-    async def delete(self, id: str) -> bool:
+    async def delete(self, id: UUID) -> bool:
         user = await self.find_by_id(id)
         if not user:
             return False

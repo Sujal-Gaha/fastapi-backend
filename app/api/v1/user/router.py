@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
+from uuid import UUID
 
 from app.api.deps import AsyncSessionDep
 from app.schemas.base.schema import PaginationOutputSchema
@@ -42,10 +43,10 @@ async def create_user(session: AsyncSessionDep, user_data: CreateUserInputSchema
     response_model=GetUserByIdResponseSchema,
     status_code=status.HTTP_200_OK,
 )
-async def get_user_by_id(session: AsyncSessionDep, user_id: str):
+async def get_user_by_id(session: AsyncSessionDep, user_id: UUID):
     repo = UserRepository(session=session)
 
-    user = await repo.find_by_id(user_id)
+    user = await repo.find_by_id(str(user_id))
 
     if not user:
         raise HTTPException(

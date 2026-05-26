@@ -4,16 +4,17 @@ from typing import Any, Generic, Optional, TypeVar
 from sqlalchemy.ext.asyncio import AsyncSession
 
 ModelType = TypeVar("ModelType")
+IDType = TypeVar("IDType")
 
 
-class BaseRepository(ABC, Generic[ModelType]):
+class BaseRepository(ABC, Generic[ModelType, IDType]):
     """Abstract base repository with common CRUD operations."""
 
     def __init__(self, session: AsyncSession):
         self.session = session
 
     @abstractmethod
-    async def find_by_id(self, id: str) -> Optional[ModelType]:
+    async def find_by_id(self, id: IDType) -> Optional[ModelType]:
         """Retrieve a single record by ID."""
         pass
 
@@ -28,11 +29,11 @@ class BaseRepository(ABC, Generic[ModelType]):
         pass
 
     @abstractmethod
-    async def update(self, id: str, input: dict[str, Any]) -> Optional[ModelType]:
+    async def update(self, id: IDType, input: dict[str, Any]) -> Optional[ModelType]:
         """Update an existing record with validated data."""
         pass
 
     @abstractmethod
-    async def delete(self, id: str) -> bool:
+    async def delete(self, id: IDType) -> bool:
         """Delete a record by ID. Returns True if deleted."""
         pass

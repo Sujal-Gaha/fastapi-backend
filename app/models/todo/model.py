@@ -1,9 +1,14 @@
 import uuid
 import enum
+from datetime import datetime, timezone
 
-from sqlalchemy import UUID, ForeignKey, String, Enum
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import UUID, ForeignKey, String, Enum, DateTime
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING
 from app.db.session import Base
+
+if TYPE_CHECKING:
+    from app.models.user.model import User
 
 
 class TodoPriorityEnum(str, enum.Enum):
@@ -34,3 +39,18 @@ class Todo(Base):
         index=True,
         default=TodoPriorityEnum.LOW,
     )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+        nullable=False,
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+        nullable=False,
+    )
+
+    # Relationships
+    user: Mapped["User"] = relationship("User", back_populates="todos")
